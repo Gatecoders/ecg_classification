@@ -1,0 +1,10 @@
+rf_new_rfc3 = 90
+rf_new_rfc4 = 85
+rf_new_rf5 = 91.8 for classification in 4 classes (normal, abnormal, mi and history of mi)
+rf_new_rf6 = 91.7 for binary classification
+rf_new_rf7 = 96.5 for binary classification
+
+
+dnn_new_dnn1 = 91.7 for classification in 2 classes (normal and abnormal)
+dnn_new_dnn2 = 94.3 for classification in 3 classes (normal, abnormal and mi)
+dnn_new_dnn3 = 91 for classification in 2 classes (normal and abnormal)
