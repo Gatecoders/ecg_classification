@@ -90,8 +90,6 @@ def train(model_name, model_type):
         model = create_dnn_model(x_train.shape, num_classes)
         early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
         model.fit(x_train, y_train, epochs=100, batch_size=16, validation_split=0.2, callbacks=[early_stopping])
-
-    # Save the trained model
     if model_type == 0:
         model_path = f'{mdls_dir}/rf_{model_name}.pkl'
         with open(model_path, 'wb') as f:
@@ -106,25 +104,19 @@ def create_dnn_model(input_shape, num_classes,
                      l3_out=10, l3_drop=0.2, l3_act='relu'):
     
     model = Sequential()
-    
     # Layer 1
     model.add(Dense(l1_out, activation=l1_act, input_shape=(input_shape[1],)))
     model.add(Dropout(l1_drop))
-    
     # Layer 2
     model.add(Dense(l2_out, activation=l2_act))
     model.add(Dropout(l2_drop))
-    
     # Layer 3
     model.add(Dense(l3_out, activation=l3_act))
     model.add(Dropout(l3_drop))
-    
     # Output Layer for multiclass classification
     model.add(Dense(num_classes, activation='softmax'))
-
     # Compile the model with the appropriate loss function for multiclass classification
     model.compile(optimizer=Adam(),
                   loss='sparse_categorical_crossentropy',  # sparse_categorical_crossentropy, binary_crossentropy
                   metrics=['accuracy'])
-    
     return model
